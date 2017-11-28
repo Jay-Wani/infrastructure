@@ -3,6 +3,8 @@ node {
     // Mark the code checkout 'Checkout'....
     stage ('Build Infrastructure') {
  
+    git url: 'https://github.com/yogendra8singh/infrastructure.git'
+	    
     // Get the Terraform tool.
     def tfHome = tool name: 'Terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
     env.PATH = "${tfHome}:${env.PATH}"
@@ -19,7 +21,7 @@ node {
             if (fileExists("status")) {
                 sh "rm status"
             }
-            sh "./init"
+            sh "terraform init"
             sh "terraform get"
             sh "set +e; terraform plan -out=plan.out -detailed-exitcode; echo \$? &gt; status"
             def exitCode = readFile('status').trim()
