@@ -103,6 +103,6 @@ resource "null_resource" "ansible" {
   depends_on = ["aws_instance.worker2"]
   
   provisioner "local-exec" {
-    command = "sleep 10 &&  ./AddRemoveSSHKey.sh && sleep 5 && ansible-playbook -i hosts playbook.yml "
+    command = "sleep 10 &&  ./AddRemoveSSHKey.sh "
   }
 }
