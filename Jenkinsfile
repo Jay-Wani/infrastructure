@@ -23,7 +23,7 @@ node {
             }
             sh "terraform init"
             sh "terraform get"
-	    sh "set +e;. /etc/profile.d/aws.sh;AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY terraform plan -out=plan.out -detailed-exitcode; echo \$? &gt; status"
+	    sh "set +e;. /etc/profile.d/aws.sh; terraform plan -out=plan.out -detailed-exitcode; echo \$? &gt; status"
             def exitCode = readFile('status').trim()
             def apply = false
             echo "Terraform Plan Exit Code: ${exitCode}"
