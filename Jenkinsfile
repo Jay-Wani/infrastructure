@@ -23,8 +23,7 @@ node {
             }
             sh "terraform init"
             sh "terraform get"
-	    sh ". /etc/environment"
-            sh "set +e; terraform plan -out=plan.out -detailed-exitcode; echo \$? &gt; status"
+	    sh "set +e;. /etc/environment; terraform plan -out=plan.out -detailed-exitcode; echo \$? &gt; status"
             def exitCode = readFile('status').trim()
             def apply = false
             echo "Terraform Plan Exit Code: ${exitCode}"
