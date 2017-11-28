@@ -14,13 +14,15 @@ node {
             stage name: 'Plan', concurrency: 1
             // Output Terraform version
             sh "terraform --version"
-            //Remove the terraform state file so we always start from a clean state
-            if (fileExists(".terraform/terraform.tfstate")) {
-                sh "rm -rf .terraform/terraform.tfstate"
-            }
-            if (fileExists("status")) {
-                sh "rm status"
-            }
+            
+	    //Remove the terraform state file so we always start from a clean state
+            //if (fileExists(".terraform/terraform.tfstate")) {
+            //    sh "rm -rf .terraform/terraform.tfstate"
+            //}
+            //if (fileExists("status")) {
+            //    sh "rm status"
+            //}
+	    
             sh "terraform init"
             sh "terraform get"
 	    sh "set +e;. /etc/profile.d/aws.sh; terraform plan -out=plan.out -detailed-exitcode; echo \$? > status"
