@@ -1,7 +1,7 @@
 node {
  
     // Mark the code checkout 'Checkout'....
-    stage 'Build Infrastructure' {
+    stage ('Build Infrastructure') {
  
     // Get the Terraform tool.
     def tfHome = tool name: 'Terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
