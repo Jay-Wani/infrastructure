@@ -15,7 +15,7 @@ variable "instance_type" {
 
 variable "key_path" {
   description = "SSH Public Key path"
-  default = "/root/.ssh/id_rsa.pub"
+  default = "id_rsa.pub"
 }
 
 
