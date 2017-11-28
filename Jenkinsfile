@@ -3,6 +3,8 @@ node {
     // Mark the code checkout 'Checkout'....
     stage ('Build Infrastructure') {
  
+    git url: 'https://github.com/yogendra8singh/infrastructure.git'
+	    
     // Get the Terraform tool.
     def tfHome = tool name: 'Terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
     env.PATH = "${tfHome}:${env.PATH}"
