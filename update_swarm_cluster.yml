@@ -12,7 +12,7 @@
       
       - name: Swarm rolling update
         command: docker service update --image lab4.southeastasia.cloudapp.azure.com/sampleapplication:latest --update-delay 50s sampleapp_sampleapplication-app --detach=false
-        register: swam-stack
+        register: swamrollingupdate
 
       - name: Show Results
-        debug: var=swam-stack.stdout 
+        debug: var=swamrollingupdate.stdout 
