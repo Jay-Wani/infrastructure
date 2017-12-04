@@ -69,7 +69,8 @@
           mode: 0755
         
       - name: Launch stack
-        command: "cd /home/{{user}}; docker stack deploy --compose-file docker-compose.yml sampleapp"
+        shell: >
+          cd /home/{{user}}; docker stack deploy --compose-file docker-compose.yml sampleapp
         register: swam-stack
 
       - name: Show Results
