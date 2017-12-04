@@ -83,10 +83,10 @@ node {
 				// Run Ansible play book			
 				sh "set +e;ansible-playbook -i hosts playbook.yml; echo \$? > setupSwarmStatus"
 			
-				def exitCode = readFile('setupSwarmStatus').trim()
-				echo "Ansible Exit Code: ${exitCode}"
+				def setupSwarmExitCode = readFile('setupSwarmStatus').trim()
+				echo "Ansible Exit Code: ${setupSwarmExitCode}"
 				
-				if (exitCode == "0") {
+				if (setupSwarmExitCode == "0") {
 					currentBuild.result = 'SUCCESS'
 				}else{
 					slackSend channel: '#ci', color: '#0080ff', message: "Ansible Playbook Failed: ${env.JOB_NAME} - ${env.BUILD_NUMBER} ()"
@@ -103,10 +103,10 @@ node {
 				// Run Ansible play book			
 				sh "set +e;ansible-playbook -i hosts update_swarm_cluster.yml; echo \$? > swarmRollingUpdateStatus"
 			
-				def exitCode = readFile('swarmRollingUpdateStatus').trim()
-				echo "Ansible Exit Code: ${exitCode}"
+				def swarmRollingUpdateExitCode = readFile('swarmRollingUpdateStatus').trim()
+				echo "Ansible Exit Code: ${swarmRollingUpdateExitCode}"
 				
-				if (exitCode == "0") {
+				if (swarmRollingUpdateExitCode == "0") {
 					currentBuild.result = 'SUCCESS'
 				}else{
 					slackSend channel: '#ci', color: '#0080ff', message: "Docker Swarm Rolling update failed: ${env.JOB_NAME} - ${env.BUILD_NUMBER} ()"
