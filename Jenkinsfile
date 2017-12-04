@@ -81,9 +81,9 @@ node {
 				sh "ansible-playbook --version"
 				
 				// Run Ansible play book			
-				sh "set +e;ansible-playbook -i hosts playbook.yml; echo \$? > ansiStatus"
+				sh "set +e;ansible-playbook -i hosts playbook.yml; echo \$? > setupSwarmStatus"
 			
-				def exitCode = readFile('ansiStatus').trim()
+				def exitCode = readFile('setupSwarmStatus').trim()
 				echo "Ansible Exit Code: ${exitCode}"
 				
 				if (exitCode == "0") {
@@ -101,9 +101,9 @@ node {
 				sh "ansible-playbook --version"
 				
 				// Run Ansible play book			
-				sh "set +e;ansible-playbook -i hosts update_swarm_cluster.yml; echo \$? > ansiStatus"
+				sh "set +e;ansible-playbook -i hosts update_swarm_cluster.yml; echo \$? > swarmRollingUpdateStatus"
 			
-				def exitCode = readFile('ansiStatus').trim()
+				def exitCode = readFile('swarmRollingUpdateStatus').trim()
 				echo "Ansible Exit Code: ${exitCode}"
 				
 				if (exitCode == "0") {
