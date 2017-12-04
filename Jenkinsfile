@@ -50,9 +50,9 @@ node {
 					try {
 					input message: 'Upgrade new release?', ok: 'Upgrade'
 					swarm_rolling_update = true
-					} catch (err) {
+					} catch (UpdateErr) {
 					    swarm_rolling_update = false
-						currentBuild.result = 'UNSTABLE'
+					    currentBuild.result = 'UNSTABLE'
 					}
 				}
 			}
