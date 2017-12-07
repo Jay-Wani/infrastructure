@@ -11,7 +11,7 @@
         register: swarm_status
       
       - name: Swarm rolling update
-        command: docker service update --image lab4.southeastasia.cloudapp.azure.com/sampleapplication:latest --update-order start-first --update-delay 50s sampleapp_sampleapplication-app --detach=false
+        command: docker service update --image lab4.southeastasia.cloudapp.azure.com/sampleapplication:latest --update-order start-first --update-delay 25s sampleapp_sampleapplication-app --detach=false
         register: swamrollingupdate
 
       - name: Show Results
